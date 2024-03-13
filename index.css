@@ -1,0 +1,97 @@
+.button {
+	color: darkblue;
+	width: 100px;
+	position: relative;
+	top: 100px;
+	background-color: aqua;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	position: relative;
+	margin: 0;
+	position: 0;
+	background-color: #2e302e;
+}
+
+.my-button {
+	padding: 10px 20px;
+	font-size: 16px;
+	background-color: #2475c2;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.header {
+	background-color: rgb(11, 102, 155);
+	display: flex;
+	padding: 10px;
+	justify-content: space-between;
+}
+
+.header nav a {
+	color: #e2e2e2;
+	text-decoration: none;
+	margin-right: 20px;
+}
+
+.header nav a:hover {
+	color: rgb(186, 187, 186);
+}
+
+.header form input {
+	background-color: rgb(13, 90, 153);
+	color: aliceblue;
+	border-width: 1px;
+	border-color: #235585;
+}
+
+.header form button {
+	background-color: #007bff;
+	border-color: #2e302e;
+	border-width: 1px;
+	transition: transform 0.3s;
+}
+
+.header form button:hover {
+	background-color: #5ea4ee;
+}
+
+.header form button:active {
+	transform: scale(0.8);
+}
+
+.content {
+	margin-top: 20px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.book {
+	width: 200px;
+	margin: 10px;
+	padding: 10px;
+	text-align: center;
+	border: 1px solid #ccc;
+}
+
+.book img {
+	max-width: 100%;
+	height: auto;
+}
+
+.book p {
+	margin: 0;
+}
+
+.bookName {
+	font-weight: bold;
+	color: #f0e9e9;
+}
+
+.bookSum {
+	font-weight: bold;
+	color: #f0e9e9;
+}

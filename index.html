@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Главная</title>
+	<link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+	<header>
+		<div class='header'>
+			<img src='logo.png'>
+			<nav>
+				<a href='index.html'>Главная</a>
+				<a href='about.html'>О нас</a>
+			</nav>
+			<form id='searchForm'>
+				<input type='text' placeholder='поиск' id='searchInput'>
+				<button type='submit'>Искать</button>
+				</from>
+		</div>
+		<div class='content' id='content'>
+		</div>
+	</header>
+</body>
+
+</html>
+
+<script>
+	const books = []
+
+	function addBook(id, name, img, sum, desk, auth) {
+		const book = {
+			id: id,
+			name: name,
+			img: img,
+			sum: sum,
+			desk: desk,
+			auth: auth
+		}
+		books.push(book)
+	}
+
+	function renderBook(book) {
+		const contentDiv = document.getElementById('content')
+		contentDiv.innerHTML = ''
+
+		const img = document.createElement('img')
+		img.src = book.img
+		img.style.width = '200px'
+		img.style.marginTop = '10px'
+		img.style.marginLeft = '20px'
+		contentDiv.appendChild(img)
+
+		const bookInfoDiv = document.createElement('div')
+		bookInfoDiv.style.marginLeft = '20px'
+		bookInfoDiv.style.display = 'flex'
+		bookInfoDiv.style.flexDirection = 'column'
+		bookInfoDiv.style.alignItems = 'flex-start'
+		bookInfoDiv.style.height = '100%'
+		contentDiv.appendChild(bookInfoDiv)
+
+		const titleDiv = document.createElement('div')
+		titleDiv.style.display = 'flex'
+		titleDiv.style.justifyContent = 'space-between'
+		titleDiv.style.alignItems = 'center'
+		titleDiv.style.width = '100%'
+		bookInfoDiv.appendChild(titleDiv)
+
+		const titleParagraph = document.createElement('p')
+		titleParagraph.style.color = '#CF7000'
+		titleParagraph.style.fontSize = '30px'
+		titleParagraph.style.marginTop = '0'
+		titleParagraph.textContent = book.name
+		titleDiv.appendChild(titleParagraph)
+
+		const authorParagraph = document.createElement('p')
+		authorParagraph.style.color = 'rgb(117, 180, 180)'
+		authorParagraph.style.fontSize = '17px'
+		authorParagraph.style.marginTop = '-23px'
+		authorParagraph.textContent = book.auth
+		bookInfoDiv.appendChild(authorParagraph)
+
+		const table = document.createElement('table')
+		bookInfoDiv.appendChild(table)
+
+		const tableRow = document.createElement('tr')
+		table.appendChild(tableRow)
+
+		const tableData1 = document.createElement('td')
+		tableData1.textContent = 'Цена:'
+		tableRow.appendChild(tableData1)
+
+		const tableData2 = document.createElement('td')
+		tableRow.appendChild(tableData2)
+
+		const priceSpan = document.createElement('span')
+		priceSpan.style.color = '#b8614f'
+		priceSpan.textContent = book.sum
+		tableData2.appendChild(priceSpan)
+
+		const descriptionParagraph = document.createElement('p')
+		descriptionParagraph.style.marginTop = '12px'
+		bookInfoDiv.appendChild(descriptionParagraph)
+
+		const descriptionSpan = document.createElement('span')
+		descriptionSpan.style.outline = 'none !important'
+		descriptionSpan.textContent = book.desk
+		descriptionParagraph.appendChild(descriptionSpan)
+
+		const buyButton = document.createElement('button')
+		buyButton.style.marginTop = '10px'
+		buyButton.style.height = '100%'
+		buyButton.style.marginLeft = '40px'
+		buyButton.textContent = 'Купить'
+		contentDiv.appendChild(buyButton)
+	}
+
+
+	function dd(booksAr) {
+		const contentDiv = document.getElementById('content')
+		contentDiv.innerHTML = ''
+		booksAr.forEach(book => {
+			const bookDiv = document.createElement('div')
+			bookDiv.classList.add('book')
+
+			const bookImg = document.createElement('img')
+			bookImg.src = book.img
+			bookImg.alt = book.name
+
+			const bookName = document.createElement('p')
+			bookName.textContent = book.name
+			bookName.classList.add('bookName')
+
+			const bookSum = document.createElement('p')
+			bookSum.textContent = book.sum
+			bookSum.classList.add('bookSum')
+
+			bookDiv.addEventListener('click', () => {
+				renderBook(book)
+			})
+
+
+			bookDiv.appendChild(bookImg)
+			bookDiv.appendChild(bookName)
+			bookDiv.appendChild(bookSum)
+
+			contentDiv.appendChild(bookDiv)
+		})
+	}
+
+	// function addBook(name, img, sum) {
+	// 	const bookDiv = document.createElement('div')
+	// 	bookDiv.classList.add('book')
+	//
+	// 	const bookImg = document.createElement('img')
+	// 	bookImg.src = img
+	// 	bookImg.alt = name
+	//
+	// 	const bookName = document.createElement('p')
+	// 	bookName.textContent = name
+	// 	bookName.classList.add('bookName')
+	//
+	// 	const bookSum = document.createElement('p')
+	// 	bookSum.textContent = sum
+	// 	bookSum.classList.add('bookSum')
+	//
+	// 	bookDiv.appendChild(bookImg)
+	// 	bookDiv.appendChild(bookName)
+	// 	bookDiv.appendChild(bookSum)
+	//
+	// 	document.getElementById('content').appendChild(bookDiv)
+	// }
+
+	document.getElementById('searchForm').addEventListener('submit', function (event) {
+		console.log(1)
+		event.preventDefault()
+		const query = document.getElementById('searchInput').value
+		const filteredBooks = books.filter(book =>
+			book.name.toLowerCase().includes(query.toLowerCase())
+		)
+		dd(filteredBooks)
+	})
+
+
+	addBook(0, 'test', 'https://www.litres.ru/pub/c/cover/48508375.jpg', 500, 'Описание', 'автор')
+	dd(books)
+</script>
